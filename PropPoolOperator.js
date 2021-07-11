@@ -133,7 +133,7 @@ module.exports = class PropPoolOperator extends Miner {
         // let total = Object.values(this.storedAddress).reduce((t, value) => t + value, 0)
 
         for (let minerAddress in this.storedAddress) {
-            let calculated_reward = REMAINING_REWARD * (this.storedAddress[minerAddress] / total)
+            let calculated_reward = Math.floor(REMAINING_REWARD * (this.storedAddress[minerAddress] / total))
             this.log(`Paying ${minerAddress} ${calculated_reward} gold for their ${this.storedAddress[minerAddress]} share.`);
             this.postTransaction([{ address: minerAddress, amount: calculated_reward }], 0);
         }
